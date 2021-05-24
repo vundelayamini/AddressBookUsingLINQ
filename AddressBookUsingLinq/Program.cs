@@ -14,7 +14,9 @@ namespace AddressBookUsingLinq
             //addressBookDataTable.EditContact(table);
             //addressBookDataTable.DeleteContact(table);
             Console.WriteLine("\n");
-            addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
+            //addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
+            addressBookDataTable.CountContactsFromPerticularCityANDState(table);
+
         }
     }
 }

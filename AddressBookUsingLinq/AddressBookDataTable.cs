@@ -85,12 +85,23 @@ namespace AddressBookUsingLinq
         public void RetrieveContactBelongingToPerticularCityORState(DataTable table)
         {
             var contacts = table.Rows.Cast<DataRow>()
-                             .Where(x => x["City"].Equals("Pune") || x["State"].Equals("MH")).CopyToDataTable();
+                             .Where(x => x["City"].Equals("Chennai") || x["State"].Equals("Tamilnadu")).CopyToDataTable();
             Console.WriteLine("Following Contacts belonging to perticular City or State ");
             DisplayContacts(contacts);
         }
+        /// <summary>
+        /// Count Contacts From Perticular City AND State
+        /// </summary>
+        /// <param name="table"></param>
+        public void CountContactsFromPerticularCityANDState(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["City"].Equals("Banglore") && x["State"].Equals("KA")).Count();
+            Console.WriteLine($"Count of Persons Beloning to City 'Baroda' and State 'MP' : {contacts} ");
+        }
     }
 }
+
 
 
 
