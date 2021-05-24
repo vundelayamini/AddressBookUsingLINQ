@@ -9,8 +9,10 @@ namespace AddressBookUsingLinq
 {
     class AddressBookDataTable
     {
-        DataTable addressBookDataTable = new DataTable();
-        //Add Columns to DataTable
+        public DataTable CreateAddressBookDataTable()
+        {
+            DataTable addressBookDataTable = new DataTable();
+              //Add Columns to DataTable
             addressBookTable.Columns.Add("FirstName", typeof(string));
             addressBookTable.Columns.Add("LastName", typeof(string));
             addressBookTable.Columns.Add("Address", typeof(string));
@@ -19,6 +21,33 @@ namespace AddressBookUsingLinq
             addressBookTable.Columns.Add("Zip", typeof(int));
             addressBookTable.Columns.Add("PhoneNumber", typeof(long));
             addressBookTable.Columns.Add("Email", typeof(string));
-    }
 
+             //Add Values for Columns
+            addressBookDataTable.Rows.Add("Yamini", "Lakshmi", "Mahadevpura", "Banglore", "KA", 673262, 8979325434, "Yamini@gmail.com");
+            addressBookDataTable.Rows.Add("Mahi", "Lakshmi", "Highway", "Pune", "MH", 7663526, 833343210, "mahi@gmail.com");
+            addressBookDataTable.Rows.Add("Jhanu", "Radha", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "jhanu@gmail.com");
+            addressBookDataTable.Rows.Add("Gayi", "Pavithra", " Near Road", "Benglore", "Karnataka", 400028, 889000880, "gayi@gmail.com");
+            addressBookDataTable.Rows.Add("Krishna", "Siri", "Chennai Highway", "chennai", "Tamilnadu", 323254, 8877743210, "krishna@gmail.com");
+            addressBookDataTable.Rows.Add("Hanshi", "Mahi", "Highway Road", "Hyderabad", "Telangana", 485254, 7877743990, "hanshi@gmail.com");
+            addressBookDataTable.Rows.Add("Pavani", "raju", "Baroda", "Baroda", "MP", 43254, 7888743210, "pavani@gmail.com");
+
+
+            return addressBookDataTable;
+        }
+
+    public void DisplayContacts(DataTable table)
+    {
+        var contacts = table.Rows.Cast<DataRow>();
+        foreach (var contact in contacts)
+        {
+            Console.WriteLine("\n------------------------------------");
+            Console.Write("\nFirst Name : " + contact.Field<string>(0) + " " + "\nLast Name : " + contact.Field<string>("LastName") + " " + "\nAddress : " + contact.Field<string>("Address") + " " + "\nCity : " + contact.Field<string>("City") + " " + "\nState : " + contact.Field<string>("State")
+                + " " + "\nZip : " + contact.Field<int>("Zip") + " " + "\nPhone Number : " + contact.Field<long>("PhoneNumber") + " " + "\nEmail : " + contact.Field<string>("Email") + " ");
+            Console.WriteLine("\n------------------------------------");
+        }
+    }
 }
+
+
+
+
