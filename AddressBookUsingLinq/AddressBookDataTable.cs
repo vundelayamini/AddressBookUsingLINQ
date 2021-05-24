@@ -21,15 +21,17 @@ namespace AddressBookUsingLinq
             addressBookDataTable.Columns.Add("Zip", typeof(int));
             addressBookDataTable.Columns.Add("PhoneNumber", typeof(long));
             addressBookDataTable.Columns.Add("Email", typeof(string));
+            addressBookDataTable.Columns.Add("AddressBookType", typeof(string));
+            addressBookDataTable.Columns.Add("AddressBookName", typeof(string));
 
             //Add Values for Columns
-            addressBookDataTable.Rows.Add("Yamini", "Lakshmi", "Mahadevpura", "Banglore", "KA", 673262, 8979325434, "Yamini@gmail.com");
-            addressBookDataTable.Rows.Add("Mahi", "Lakshmi", "Highway", "Pune", "MH", 7663526, 833343210, "mahi@gmail.com");
-            addressBookDataTable.Rows.Add("Jhanu", "Radha", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "jhanu@gmail.com");
-            addressBookDataTable.Rows.Add("Gayi", "Pavithra", " Near Road", "Benglore", "Karnataka", 400028, 889000880, "gayi@gmail.com");
-            addressBookDataTable.Rows.Add("Krishna", "Siri", "Chennai Highway", "chennai", "Tamilnadu", 323254, 8877743210, "krishna@gmail.com");
-            addressBookDataTable.Rows.Add("Hanshi", "Mahi", "Highway Road", "Hyderabad", "Telangana", 485254, 7877743990, "hanshi@gmail.com");
-            addressBookDataTable.Rows.Add("Pavani", "raju", "Baroda", "Baroda", "MP", 43254, 7888743210, "pavani@gmail.com");
+            addressBookDataTable.Rows.Add("Yamini", "Lakshmi", "Mahadevpura", "Banglore", "KA", 673262, 8979325434, "Yamini@gmail.com","Friends", "AddressBook",);
+            addressBookDataTable.Rows.Add("Mahi", "Lakshmi", "Highway", "Pune", "MH", 7663526, 833343210, "mahi@gmail.com", "Family", "AddressBook");
+            addressBookDataTable.Rows.Add("Jhanu", "Radha", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "jhanu@gmail.com","Friends", "AddressBook");
+            addressBookDataTable.Rows.Add("Gayi", "Pavithra", " Near Road", "Benglore", "Karnataka", 400028, 889000880, "gayi@gmail.com", "Family", "AddressBook");
+            addressBookDataTable.Rows.Add("Krishna", "Siri", "Chennai Highway", "chennai", "Tamilnadu", 323254, 8877743210, "krishna@gmail.com", "Friends", "AddressBook1");
+            addressBookDataTable.Rows.Add("Hanshi", "Mahi", "Highway Road", "Hyderabad", "Telangana", 485254, 7877743990, "hanshi@gmail.com", "Family", "AddressBook");
+            addressBookDataTable.Rows.Add("Pavani", "raju", "Baroda", "Baroda", "MP", 43254, 7888743210, "pavani@gmail.com", "Friends", "AddressBook");
 
 
             return addressBookDataTable;
@@ -111,10 +113,23 @@ namespace AddressBookUsingLinq
             Console.WriteLine("\nSorted Contacts using Person's first name");
             DisplayContacts(contacts.CopyToDataTable());
         }
+        /// <summary>
+        ///Count Contacts By Address Book Type
+        /// </summary>
+        /// <param name="table"></param>
+        public void CountContactsByAddressBookType(DataTable table)
+        {
+            var friendsContacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["AddressBookType"].Equals("Friends")).Count();
+            Console.WriteLine($"Number of Persons belongs to type 'Friends' : {friendsContacts} ");
+            var familyContact = table.Rows.Cast<DataRow>()
+                             .Where(x => x["AddressBookType"].Equals("Family")).Count();
+            Console.WriteLine($"Number of Persons belongs to type 'Family' : {familyContact}");
+        }
 
     }
 }
-}
+
 
 
 
