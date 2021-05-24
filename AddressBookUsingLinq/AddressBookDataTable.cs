@@ -50,7 +50,7 @@ namespace AddressBookUsingLinq
             }
         }
         /// <summary>
-        /// Edit the Contacts
+        /// Edit the Contact
         /// </summary>
         /// <param name="table"></param>
         public void EditContact(DataTable table)
@@ -58,14 +58,24 @@ namespace AddressBookUsingLinq
             var contacts = table.AsEnumerable().Where(x => x.Field<string>("FirstName") == "Naman");
             foreach (var contact in contacts)
             {
-                contact.SetField("LastName", "Dhiyani");
+                contact.SetField("LastName", "Mahi");
                 contact.SetField("City", "Banglore");
                 contact.SetField("State", "Karnataka");
-                contact.SetField("Email", "Naman@yahoo.com");
+                contact.SetField("Email", "mahi@yahoo.com");
             }
             Console.WriteLine("\n**************************************************");
             Console.WriteLine("Following is recently Updated Contact");
             DisplayContacts(contacts.CopyToDataTable());
+        }
+        /// <summary>
+        /// Delet contact
+        /// </summary>
+        /// <param name="table"></param>
+        public void DeleteContact(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(r => r.Field<string>("FirstName") != "Yamini").CopyToDataTable();
+            Console.WriteLine("Following Contacts are present in Datatable after deletion of Contact of Person 'Akshara' ");
+            DisplayContacts(contacts);
         }
     }
 }
