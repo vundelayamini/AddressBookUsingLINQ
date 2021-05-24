@@ -99,7 +99,21 @@ namespace AddressBookUsingLinq
                              .Where(x => x["City"].Equals("Banglore") && x["State"].Equals("KA")).Count();
             Console.WriteLine($"Count of Persons Beloning to City 'Baroda' and State 'MP' : {contacts} ");
         }
+        /// <summary>
+        ///Sort Contacts by first name 
+        /// </summary>
+        /// <param name="table"></param>
+        public void SortContacts(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>()
+                           .OrderBy(x => x.Field<string>("FirstName"));
+            Console.WriteLine("\n**************************************************");
+            Console.WriteLine("\nSorted Contacts using Person's first name");
+            DisplayContacts(contacts.CopyToDataTable());
+        }
+
     }
+}
 }
 
 
