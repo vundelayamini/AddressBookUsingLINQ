@@ -12,7 +12,7 @@ namespace AddressBookUsingLinq
         public DataTable CreateAddressBookDataTable()
         {
             DataTable addressBookDataTable = new DataTable();
-              //Add Columns to DataTable
+            //Add Columns to DataTable
             addressBookTable.Columns.Add("FirstName", typeof(string));
             addressBookTable.Columns.Add("LastName", typeof(string));
             addressBookTable.Columns.Add("Address", typeof(string));
@@ -22,7 +22,7 @@ namespace AddressBookUsingLinq
             addressBookTable.Columns.Add("PhoneNumber", typeof(long));
             addressBookTable.Columns.Add("Email", typeof(string));
 
-             //Add Values for Columns
+            //Add Values for Columns
             addressBookDataTable.Rows.Add("Yamini", "Lakshmi", "Mahadevpura", "Banglore", "KA", 673262, 8979325434, "Yamini@gmail.com");
             addressBookDataTable.Rows.Add("Mahi", "Lakshmi", "Highway", "Pune", "MH", 7663526, 833343210, "mahi@gmail.com");
             addressBookDataTable.Rows.Add("Jhanu", "Radha", "Flex Road", "Mumbai", "MH", 303222, 6876543210, "jhanu@gmail.com");
@@ -34,16 +34,38 @@ namespace AddressBookUsingLinq
 
             return addressBookDataTable;
         }
-
-    public void DisplayContacts(DataTable table)
-    {
-        var contacts = table.Rows.Cast<DataRow>();
-        foreach (var contact in contacts)
+        /// <summary>
+        ///Display the Data table Contacts
+        /// </summary>
+        /// <param name="table"></param>
+        public void DisplayContacts(DataTable table)
         {
-            Console.WriteLine("\n------------------------------------");
-            Console.Write("\nFirst Name : " + contact.Field<string>(0) + " " + "\nLast Name : " + contact.Field<string>("LastName") + " " + "\nAddress : " + contact.Field<string>("Address") + " " + "\nCity : " + contact.Field<string>("City") + " " + "\nState : " + contact.Field<string>("State")
-                + " " + "\nZip : " + contact.Field<int>("Zip") + " " + "\nPhone Number : " + contact.Field<long>("PhoneNumber") + " " + "\nEmail : " + contact.Field<string>("Email") + " ");
-            Console.WriteLine("\n------------------------------------");
+            var contacts = table.Rows.Cast<DataRow>();
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine("\n------------------------------------");
+                Console.Write("\nFirst Name : " + contact.Field<string>(0) + " " + "\nLast Name : " + contact.Field<string>("LastName") + " " + "\nAddress : " + contact.Field<string>("Address") + " " + "\nCity : " + contact.Field<string>("City") + " " + "\nState : " + contact.Field<string>("State")
+                    + " " + "\nZip : " + contact.Field<int>("Zip") + " " + "\nPhone Number : " + contact.Field<long>("PhoneNumber") + " " + "\nEmail : " + contact.Field<string>("Email") + " ");
+                Console.WriteLine("\n------------------------------------");
+            }
+        }
+        /// <summary>
+        /// Edit the Contacts
+        /// </summary>
+        /// <param name="table"></param>
+        public void EditContact(DataTable table)
+        {
+            var contacts = table.AsEnumerable().Where(x => x.Field<string>("FirstName") == "Naman");
+            foreach (var contact in contacts)
+            {
+                contact.SetField("LastName", "Dhiyani");
+                contact.SetField("City", "Banglore");
+                contact.SetField("State", "Karnataka");
+                contact.SetField("Email", "Naman@yahoo.com");
+            }
+            Console.WriteLine("\n**************************************************");
+            Console.WriteLine("Following is recently Updated Contact");
+            DisplayContacts(contacts.CopyToDataTable());
         }
     }
 }
