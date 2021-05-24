@@ -9,10 +9,12 @@ namespace AddressBookUsingLinq
         {
             Console.WriteLine("Welcom to AddressBook Using Linq");
             AddressBookDataTable addressBookDataTable = new AddressBookDataTable();
-            DataTable table = addressBookDataTable.CreateAddressBookDataTable();
-            addressBookDataTable.DisplayContacts(table);
-            addressBookDataTable.EditContact(table);
-            addressBookDataTable.DeleteContact(table);
+            //DataTable table = addressBookDataTable.CreateAddressBookDataTable();
+            //addressBookDataTable.DisplayContacts(table);
+            //addressBookDataTable.EditContact(table);
+            //addressBookDataTable.DeleteContact(table);
+            Console.WriteLine("\n");
+            addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
         }
     }
 }

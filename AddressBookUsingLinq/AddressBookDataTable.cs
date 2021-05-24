@@ -63,7 +63,7 @@ namespace AddressBookUsingLinq
                 contact.SetField("State", "Karnataka");
                 contact.SetField("Email", "mahi@yahoo.com");
             }
-            Console.WriteLine("\n**************************************************");
+            Console.WriteLine("\n");
             Console.WriteLine("Following is recently Updated Contact");
             DisplayContacts(contacts.CopyToDataTable());
         }
@@ -77,8 +77,21 @@ namespace AddressBookUsingLinq
             Console.WriteLine("Following Contacts are present in Datatable after deletion of Contact of Person 'Akshara' ");
             DisplayContacts(contacts);
         }
+
+        /// <summary>
+        /// Retrieve Contact Belonging To Perticular City OR State
+        /// </summary>
+        /// <param name="table"></param>
+        public void RetrieveContactBelongingToPerticularCityORState(DataTable table)
+        {
+            var contacts = table.Rows.Cast<DataRow>()
+                             .Where(x => x["City"].Equals("Pune") || x["State"].Equals("MH")).CopyToDataTable();
+            Console.WriteLine("Following Contacts belonging to perticular City or State ");
+            DisplayContacts(contacts);
+        }
     }
 }
+
 
 
 
