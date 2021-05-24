@@ -13,14 +13,14 @@ namespace AddressBookUsingLinq
         {
             DataTable addressBookDataTable = new DataTable();
             //Add Columns to DataTable
-            addressBookTable.Columns.Add("FirstName", typeof(string));
-            addressBookTable.Columns.Add("LastName", typeof(string));
-            addressBookTable.Columns.Add("Address", typeof(string));
-            addressBookTable.Columns.Add("City", typeof(string));
-            addressBookTable.Columns.Add("State", typeof(string));
-            addressBookTable.Columns.Add("Zip", typeof(int));
-            addressBookTable.Columns.Add("PhoneNumber", typeof(long));
-            addressBookTable.Columns.Add("Email", typeof(string));
+            addressBookDataTable.Columns.Add("FirstName", typeof(string));
+            addressBookDataTable.Columns.Add("LastName", typeof(string));
+            addressBookDataTable.Columns.Add("Address", typeof(string));
+            addressBookDataTable.Columns.Add("City", typeof(string));
+            addressBookDataTable.Columns.Add("State", typeof(string));
+            addressBookDataTable.Columns.Add("Zip", typeof(int));
+            addressBookDataTable.Columns.Add("PhoneNumber", typeof(long));
+            addressBookDataTable.Columns.Add("Email", typeof(string));
 
             //Add Values for Columns
             addressBookDataTable.Rows.Add("Yamini", "Lakshmi", "Mahadevpura", "Banglore", "KA", 673262, 8979325434, "Yamini@gmail.com");

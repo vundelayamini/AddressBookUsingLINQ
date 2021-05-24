@@ -10,13 +10,13 @@ namespace AddressBookUsingLinq
             Console.WriteLine("Welcom to AddressBook Using Linq");
             AddressBookDataTable addressBookDataTable = new AddressBookDataTable();
             DataTable table = addressBookDataTable.CreateAddressBookDataTable();
-            //addressBookDataTable.DisplayContacts(table);
+            addressBookDataTable.DisplayContacts(table);
             //addressBookDataTable.EditContact(table);
             //addressBookDataTable.DeleteContact(table);
             Console.WriteLine("\n");
             //addressBookDataTable.RetrieveContactBelongingToPerticularCityORState(table);
             //addressBookDataTable.CountContactsFromPerticularCityANDState(table);
-            addressBookDataTable.SortContacts(table);
+            //addressBookDataTable.SortContacts(table);
 
         }
     }
